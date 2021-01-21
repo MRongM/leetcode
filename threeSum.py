@@ -17,10 +17,32 @@ class Solution(object):
 
 def threeSum(nums):
     nums.sort()
+    n = len(nums)
+    res = []
+    for i in range(n):
+        first = nums[i]
+        if i > 0 and first == nums[i - 1]:
+            continue
+        k = n - 1
+        target = -first
+        for j in range(i + 1, n):
+            second = nums[j]
+            if j > i + 1 and second == nums[j - 1]:
+                continue
 
+            third = nums[k]
+            while j < k and third + second > target:
+                k -= 1
+                third = nums[k]
+            if j == k:
+                break
+            if first + second + third == 0:
+                res.append([first, second, third])
+    return res
 
 
 so = Solution()
 nums = [-1, 0, 1, 2, -1, -4]
-res = so.threeSum(nums)
+# res = so.threeSum(nums)
+res = threeSum(nums)
 print(res)
