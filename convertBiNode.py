@@ -55,7 +55,7 @@ def traversal_layer(nodes):
     if not nodes:
         return res
 
-    nexts=[]
+    nexts = []
     for no in nodes:
         res.append(no.val)
         if no.left:
@@ -63,7 +63,8 @@ def traversal_layer(nodes):
         if no.right:
             nexts.append(no.right)
     ss = traversal_layer(nexts)
-    return res+ss
+    res.extend(ss)
+    return res
     # return res.extend(ss)
 
 
@@ -84,13 +85,16 @@ def bad_way():
     n4.left = TreeNode(0)
     return r
 
+
 po = []
+
+
 def inorder(root):
     if not root:
         return
     left = root.left
     inorder(left)
-    root.left=None
+    root.left = None
     print(root.val)
     inorder(root.right)
 
@@ -100,7 +104,7 @@ r = bad_way()
 # t2 = trav_tree(r, 2)
 # t3 = trav_tree(r, 3)
 t4 = traversal_layer([r])
-inorder(r)
+# inorder(r)
 print(t4)
 #
 #
