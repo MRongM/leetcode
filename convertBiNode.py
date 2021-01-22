@@ -32,7 +32,12 @@ def make_tree(arr):
 
 
 def convertBiNode(root):
-    pass
+    if not root:
+        return root
+    left = root.left
+    root.left = convertBiNode(root.right)
+    root.right = convertBiNode(left)
+    return root
 
 
 def trav_tree(root, order=1):
@@ -99,9 +104,10 @@ r = bad_way()
 # t1 = trav_tree(r)
 # t2 = trav_tree(r, 2)
 # t3 = trav_tree(r, 3)
-t4 = traversal_layer([r])
-inorder(r)
-print(t4)
+# t4 = traversal_layer([r])
+# inorder(r)
+rr = convertBiNode(r)
+print()
 #
 #
 # a = [4, 2, 5, 1, 3, None, 6, 0]
