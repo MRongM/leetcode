@@ -49,7 +49,9 @@ def print_lis(arr):
         arr = arr.next
     print(','.join(str(r) for r in rr))
 
+
 from otils import cost
+
 
 @cost()
 def mergeMultiList(arr_link):
@@ -61,6 +63,7 @@ def mergeMultiList(arr_link):
         first = mergeList(first, arr_link[i])
 
     return first
+
 
 @cost()
 def mergeMultiList2(arr_link, start, end):
@@ -114,11 +117,137 @@ def find_mid(head):
     return pre
 
 
-def merge_sort_list(arr):
-    pass
+def twoNode(node1, node2):
+    if node1 and node2:
+        if node1.val < node2.val:
+            node1.next = node2
+            return node1
+        else:
+            node2.next = node1
+            return node2
 
-head1 = make_list(range(1, 23, 2))
-head2 = make_list(range(2, 500, 2))
+    return node1 if node1 else node2
+
+
+def sort_list2(arr):
+    # 归并排序链表
+    if not arr or not arr.next:
+        return arr
+    pre, cur = arr, arr.next
+
+    while cur and cur.next:
+        pre = pre.next
+        cur = cur.next.next
+
+    right = pre.next
+    pre.next = None
+    left = arr
+    left = sort_list2(left)
+    right = sort_list2(right)
+
+    res = head = Node(-1)
+
+    while left and right:
+        if left.val < right.val:
+            head.next = left
+            left = left.next
+        else:
+            head.next = right
+            right = right.next
+        head = head.next
+
+    head.next = left if left else right
+    return res.next
+
+
+def addTwoNumber(lis1, lis2):
+    # https://leetcode-cn.com/problems/add-two-numbers/submissions/
+    a1 = []
+    a2 = []
+    while lis1:
+        a1.append(lis1.val)
+        lis1 = lis1.next
+
+    while lis2:
+        a2.append(lis2.val)
+        lis2 = lis2.next
+
+    res = []
+    s = 0
+    while a1 or a2:
+        x = a1.pop(-1) if a1 else 0
+        y = a2.pop(-1) if a2 else 0
+        k = x + y + s
+        if k > 9:
+            k = k%10
+            s = 1
+        else:
+            s = 0
+
+        res.insert(0, k)
+
+    if s:
+        res.insert(0, s)
+    return res
+
+
+def reverse_list(arr):
+
+    pre = None
+    cur = arr
+    while cur:
+        tmp = cur.next
+        cur.next = pre
+        pre = cur
+        cur = tmp
+    return pre
+
+
+def reverse_link(link):
+    if not link or not link.next:
+        return link
+    print_lis(link)
+    print("="*10)
+    cur = reverse_link(link.next)
+    print_lis(link)
+    print("*"*10)
+    link.next.next = link
+    link.next = None
+    print_lis(link)
+    print("&"*10)
+    print_lis(cur)
+    print("$"*10)
+
+    return cur
+
+
+def swapPair(head):
+    if not head or not head.next:
+        return head
+    next = head.next
+    head.next = swapPair(next.next)
+    next.next = head
+    return next
+
+
+def swapPair2(head):
+    if not head:
+        return head
+    cur = head
+    pre = None
+    while cur:
+        cur.next = pre
+        pre = cur
+        cur = cur.next
+    next = head.next
+    head.next = swapPair(next.next)
+    next.next = head
+    return next
+
+
+
+head1 = make_list([5,3])
+head2 = make_list(range(2, 9, 2))
 head3 = make_list(range(10, 900, 3))
 head4 = make_list(range(30, 1000, 4))
 # new_lis = mergeList(head1, head2)
@@ -138,11 +267,20 @@ head4 = make_list(range(30, 1000, 4))
 # print_lis(inode)
 # inode = insert(head1,Node(55))
 # print_lis(inode)
-import random
+# import random
+#
+# cc = list(range(1, 22, 2))
+# random.shuffle(cc)
+# head9 = make_list(cc)
+# print_lis(head9)
+# mm = sort_list2(head9)
+# print_lis(mm)
 
-cc = list(range(1, 1000, 2))
-random.shuffle(cc)
-head9 = make_list(cc)
-print_lis(head9)
-mm = sort_list(head9)
-print_lis(mm)
+# res = addTwoNumber(head1, head2)
+print_lis(head1)
+print_lis(head2)
+# cc = reverse_list(head2)
+# cc = reverse_link(head2)
+cc = swapPair(head2)
+print_lis(cc)
+# print(res)
