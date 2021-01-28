@@ -93,6 +93,11 @@ def set_value(point, matrix, value):
 
 
 def generateMatrix(n):
+    """
+    从中心点开始生成顺时针旋转矩阵
+    :param n:
+    :return:
+    """
     step = 1
     border = 1
 
@@ -117,11 +122,69 @@ def generateMatrix(n):
     return matrix
 
 
+def generateMatrix2(n):
+    """
+    从顶点开始生成顺时针旋转矩阵
+    :param n:
+    :return:
+    """
+    l = 0
+    r = n - 1
+    t = 0
+    b = n - 1
+    num = 0
+    tar = n * n
+    matrix = [[0 for _ in range(n)] for _ in range(n)]
+
+    while num <= tar:
+        for i in range(l, r + 1):
+            num += 1
+            matrix[t][i] = num
+        t += 1
+        for i in range(t, b + 1):
+            num += 1
+            matrix[i][r] = num
+        r -= 1
+        for i in range(r + 1, l - 1, -1):
+            num += 1
+            matrix[b][i] = num
+        b -= 1
+        for i in range(b + 1, t - 1, -1):
+            num += 1
+            matrix[i][l] = num
+        l += 1
+    return matrix
+
+
+def setZeroes(martix):
+    """
+    将0所在的行列设置为0
+    :param martix:
+    :return:
+    """
+
+
+def generateTriangle(num):
+    """
+    杨辉三角
+    :param num:
+    :return:
+    """
+
+
+def queen8():
+    """
+    八皇后问题
+    :return:
+    """
+
+
 import pprint
 
 m = [[1, 2], [3, 4]]
 # pprint.pprint(m)
 # rotate(m)
 # res = spiralOrder(m)
-res = generateMatrix(6)
+# res = generateMatrix(6)
+res = generateMatrix2(6)
 pprint.pprint(res)
