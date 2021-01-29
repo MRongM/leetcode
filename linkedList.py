@@ -245,6 +245,46 @@ def swapPair2(head):
     return next
 
 
+def deleteNode(head, node):
+    pre = head
+    if not head.next:
+        return pre
+    hnext = head.next
+    while hnext:
+        if hnext.val == node.val:
+            head.next = hnext.next
+        head = head.next
+        hnext = hnext.next
+    return pre
+
+
+def oodFirst(head):
+    """
+    输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有奇数位于数组的前
+    半部分，所有偶数位于数组的后半部分
+    :param head:
+    :return:
+    """
+
+
+def copyRandomList(head):
+    """
+    https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof/
+    请实现 copyRandomList 函数，复制一个复杂链表。在复杂链表中，每个节点除了有一个
+    next 指针指向下一个节点，还有一个 random 指针指向链表中的任意节点或者 null。
+    :return:
+    """
+
+
+def tree2list(root):
+    """
+    https://leetcode-cn.com/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof/
+    输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的循环双向链表。要求不能创建任何
+    新的节点，只能调整树中节点指针的指向。
+    :param root:
+    :return:
+    """
+
 
 head1 = make_list([5,3])
 head2 = make_list(range(2, 9, 2))
@@ -281,6 +321,9 @@ print_lis(head1)
 print_lis(head2)
 # cc = reverse_list(head2)
 # cc = reverse_link(head2)
-cc = swapPair(head2)
-print_lis(cc)
+# cc = swapPair(head2)
+# print_lis(cc)
 # print(res)
+print_lis(head2)
+cc = deleteNode(head2,Node(8))
+print_lis(cc)

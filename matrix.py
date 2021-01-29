@@ -179,6 +179,15 @@ def queen8():
     """
 
 
+def print_matrix(matrix):
+    """
+    输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字
+    :param matrix:
+    :return:
+    """
+
+
+    
 import pprint
 
 m = [[1, 2], [3, 4]]
