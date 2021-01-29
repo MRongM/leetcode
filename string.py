@@ -6,4 +6,25 @@ def str_combination(s):
     """
 
 
+def longestSubStr(s):
+    """
 
+    :param s:
+    :return:
+    """
+    n = len(s)
+
+
+def firstUniqChar(s):
+    res = {}
+    for i in s:
+        if res.get(i):
+            res[i]+=1
+        else:
+            res[i] =1
+
+    for i in s:
+        if res.get(i) == 1:
+            return i
+
+    return " "

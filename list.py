@@ -168,6 +168,39 @@ def insert(r, value, k):
     r.insert(index, value)
 
 
+def getIntersectionNode(headA, headB):
+    PA = headA
+    PB = headB
+    while PA!=PB:
+        if PA:
+            PA = PA.next
+        else:
+            PA = headB
+
+        if PB:
+            PB = PB.next
+        else:
+            PB = headA
+    return PA
+
+    # la = []
+    # lb = []
+    # if not headA or not headB:
+    #     return
+    #
+    # while headA:
+    #     la.append(headA)
+    #     headA = headA.next
+    #
+    # while headB:
+    #     lb.append(headB)
+    #     headB = headB.next
+    #
+    # for i in range(1, min(len(la), len(lb)) + 1):
+    #     if la[-i] != lb[-i]:
+    #         return la[-i]
+
+
 a = [3, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2]
 print(find_half(a))
 
