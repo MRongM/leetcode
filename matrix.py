@@ -156,6 +156,28 @@ def generateMatrix2(n):
     return matrix
 
 
+def count_paths(m, n):
+    results = [[1 for i in range(n)] for i in range(m)]
+    for i in range(1, n):
+        for j in range(1, m):
+            results[j][i] = results[j - 1][i] + results[j][i - 1]
+    print(results)
+    return results[-1][-1]
+
+
+def waysToStep(n: int) -> int:
+    res = [0 for _ in range(n + 1)]
+    res[0] = 1
+    for i in range(1, n + 1):
+        res[i] = res[i - 1]
+        if i >= 2:
+            res[i] = (res[i] + res[i - 2]) % 1000000007
+        if i >= 3:
+            res[i] = (res[i] + res[i - 3]) % 1000000007
+    print(res)
+    return res[-1]
+
+
 def setZeroes(martix):
     """
     将0所在的行列设置为0
@@ -187,7 +209,6 @@ def print_matrix(matrix):
     """
 
 
-    
 import pprint
 
 m = [[1, 2], [3, 4]]
@@ -195,5 +216,7 @@ m = [[1, 2], [3, 4]]
 # rotate(m)
 # res = spiralOrder(m)
 # res = generateMatrix(6)
-res = generateMatrix2(6)
+# res = generateMatrix2(6)
+# res = count_paths(6,5)
+res = waysToStep(4)
 pprint.pprint(res)
