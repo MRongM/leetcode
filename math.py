@@ -74,20 +74,39 @@ def isNumber(s):
         pass
 
 
-r1 = []
-r2 = []
-for i in range(10):
-    r = fibonacci(i)
-    r1.append(r)
+def isUgly(num):
+    if num == 1:
+        return True
+    if num < 0:
+        return False
 
-for i in range(10):
-    r = fibonacci(i)
-    r2.append(r)
+    a = [2, 3, 5]
+    for i in a:
+        while num % i == 0:
+            num = num / i
+            if num == 1:
+                return True
+    return False
 
-print(r1)
-print(r2)
 
+for i in range(2, 20):
+    print(i, ' ', isUgly(i))
+
+c = -2147483648
+print(c, ' ', isUgly(c))
+# r1 = []
+# r2 = []
+# for i in range(10):
+#     r = fibonacci(i)
+#     r1.append(r)
+#
+# for i in range(10):
+#     r = fibonacci(i)
+#     r2.append(r)
+#
+# print(r1)
+# print(r2)
 # r = cutRope(9)
 # r = cuttingRope(8)
 # print(r)
-print_n(2)
+# print_n(2)

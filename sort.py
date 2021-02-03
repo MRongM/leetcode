@@ -39,14 +39,6 @@ def largestNum(nums):
     return ''.join(nums_str)
 
 
-def mostPointsLine(points):
-    """
-    给定一个二维平面，平面上有 n 个点，求最多有多少个点在同一条直线上。
-    :param points:
-    :return:
-    """
-
-
 nums = [1, 2, 3, 1, 3, 5, 1, 4, 5, 7]
 res = largestNum(nums)
 print(res)
