@@ -179,7 +179,7 @@ def addTwoNumber(lis1, lis2):
         y = a2.pop(-1) if a2 else 0
         k = x + y + s
         if k > 9:
-            k = k%10
+            k = k % 10
             s = 1
         else:
             s = 0
@@ -192,7 +192,6 @@ def addTwoNumber(lis1, lis2):
 
 
 def reverse_list(arr):
-
     pre = None
     cur = arr
     while cur:
@@ -207,16 +206,16 @@ def reverse_link(link):
     if not link or not link.next:
         return link
     print_lis(link)
-    print("="*10)
+    print("=" * 10)
     cur = reverse_link(link.next)
     print_lis(link)
-    print("*"*10)
+    print("*" * 10)
     link.next.next = link
     link.next = None
     print_lis(link)
-    print("&"*10)
+    print("&" * 10)
     print_lis(cur)
-    print("$"*10)
+    print("$" * 10)
 
     return cur
 
@@ -258,6 +257,21 @@ def deleteNode(head, node):
     return pre
 
 
+def deleteNode2(root, value):
+    head = pre = Node(-1)
+    if not root:
+        return None
+    head.next = root
+    root = root.next
+    while root:
+        if root.val == value:
+            pre.next = root.next
+        pre = pre.next
+        root = root.next
+
+    return head.next
+
+
 def oodFirst(head):
     """
     输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有奇数位于数组的前
@@ -286,7 +300,7 @@ def tree2list(root):
     """
 
 
-head1 = make_list([5,3])
+head1 = make_list([5, 3])
 head2 = make_list(range(2, 9, 2))
 head3 = make_list(range(10, 900, 3))
 head4 = make_list(range(30, 1000, 4))
@@ -317,13 +331,14 @@ head4 = make_list(range(30, 1000, 4))
 # print_lis(mm)
 
 # res = addTwoNumber(head1, head2)
-print_lis(head1)
-print_lis(head2)
+# print_lis(head1)
+# print_lis(head2)
 # cc = reverse_list(head2)
 # cc = reverse_link(head2)
 # cc = swapPair(head2)
 # print_lis(cc)
 # print(res)
 print_lis(head2)
-cc = deleteNode(head2,Node(8))
+# cc = deleteNode(head2,Node(6))
+cc = deleteNode2(head2, 2)
 print_lis(cc)

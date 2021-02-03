@@ -178,6 +178,43 @@ def waysToStep(n: int) -> int:
     return res[-1]
 
 
+def calculate_area(matrix):
+    n = len(matrix)
+    res = [[0 for _ in range(n)] for _ in range(n)]
+    area = 0
+    j = i = 0
+    width = height = 0
+
+    for i in range(1, n):
+        for j in range(i, n):
+            pass
+
+    while i < n:
+        i0 = i
+        j0 = j = 0
+        width = height = 0
+        while j < n:
+            if matrix[i][j] == 1:
+                if width == 0 and height == 0:
+                    width += 1
+                    height += 1
+                    j += 1
+
+                if j - j0 > i - i0:
+                    width += 1
+                    i += 1
+
+                if j - j0 < i - i0:
+                    height += 1
+                    j += 1
+
+            break
+        e = min(width, height)
+        area = max(area, e * e)
+
+        i = i0 + 1
+
+
 def setZeroes(martix):
     """
     将0所在的行列设置为0

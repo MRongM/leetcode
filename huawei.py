@@ -245,17 +245,47 @@ def poker(ss):
         return 'ERROR'
 
 
-po = ['3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A', '2', 'joker', 'JOKER']
-pp = {}
-idx = 1
-for i in po:
-    pp[i] = idx
-    idx += 1
-print(pp)
+def gcd(a, b):
+    while a % b != 0:
+        a, b = b, a % b
+    return b
 
-a = [(1, 3), (2, 4), (3, 7)]
-cc = sorted(a, key=lambda x: x[1], reverse=True)
-print(cc)
+
+def lcm(a, b):
+    r = a * b / gcd(a, b)
+    return r
+
+
+def deleteNode(root,value):
+    head = pre = Node(-1)
+    if not root.next:
+        return None
+    head.next = root
+    root = root.next
+    while root:
+        if root.val == value:
+            pre.next = root.next
+        pre = pre.next
+        root = root.next
+
+    return head.next
+#
+# print(gcd(12, 6))
+# print(lcm(12, 6))
+# print(gcd(12, 6))
+# print(lcm(5, 7))
+#
+# po = ['3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A', '2', 'joker', 'JOKER']
+# pp = {}
+# idx = 1
+# for i in po:
+#     pp[i] = idx
+#     idx += 1
+# print(pp)
+#
+# a = [(1, 3), (2, 4), (3, 7)]
+# cc = sorted(a, key=lambda x: x[1], reverse=True)
+# print(cc)
 # nums = [3,2,1]
 # nums = [2,5,1,5,4,5]
 # nums = [243, 277, 172, 222, 127, 70, 34, 1, 261, 277, 10, 151, 29, 159, 318, 16, 50, 41, 309, 315, 303, 47, 5, 257, 246,
