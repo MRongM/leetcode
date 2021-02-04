@@ -117,6 +117,40 @@ def maxProfit(nums):
             pre = nums[i]
     return res
 
+
+def count_rect_area(matrix):
+    """
+    https://leetcode-cn.com/problems/maximal-square/solution/zui-da-zheng-fang-xing-by-leetcode-solution/
+    :param matrix:
+    :return:
+    """
+    if not matrix:
+        return 0
+    n = len(matrix)
+    m = len(matrix[0])
+    ans = [[0] * m for _ in range(n)]
+    side=0
+    for i in range(1, n + 1):
+        for j in range(1, m + 1):
+            if matrix[i - 1][j - 1] == '1':
+                if i == 1 or j == 1:
+                    ans[i][j] = 1
+                else:
+                    ans[i][j] = min(ans[i - 1][j], ans[i][j - 1],ans[i-1][j-1]) + 1
+            side = max(side, ans[i][j])
+    return side
+
+m4 = [
+    ['1', '0', '1', '0', '1', '1', '1', '1', '1', '1'],
+    ['0', '0', '0', '0', '0', '0', '0', '1', '1', '1'],
+    ['1', '0', '1', '0', '1', '1', '0', '1', '1', '1'],
+    ['0', '0', '0', '0', '1', '1', '1', '1', '1', '1'],
+    ['1', '0', '1', '0', '1', '1', '1', '1', '1', '1'],
+    ['0', '0', '0', '0', '0', '0', '1', '1', '1', '1'],
+    ['1', '0', '1', '0', '1', '1', '1', '1', '1', '1'],
+    ['0', '0', '0', '0', '1', '1', '0', '0', '0', '1']]
+
+
 # prices = [7,6,4,3,1]
 prices = [7, 1, 5, 3, 6, 4]
 print(maxProfit(prices))
