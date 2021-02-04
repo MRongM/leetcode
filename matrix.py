@@ -215,12 +215,27 @@ def calculate_area(matrix):
         i = i0 + 1
 
 
-def setZeroes(martix):
+def setZeroes(matrix):
     """
+    https://leetcode-cn.com/problems/set-matrix-zeroes/
     将0所在的行列设置为0
     :param martix:
     :return:
     """
+    n = len(matrix)
+    m = len(matrix[0])
+    res = []
+    for i in range(n):
+        for j in range(m):
+            if matrix[i][j] == 0:
+                res.append((i, j))
+
+    for i, j in res:
+        for x in range(n):
+            matrix[x][j] = 0
+
+        for y in range(m):
+            matrix[i][y] = 0
 
 
 def generateTriangle(num):
