@@ -256,7 +256,13 @@ def lcm(a, b):
     return r
 
 
-def deleteNode(root,value):
+class Node:
+    def __init__(self, value):
+        self.next = None
+        self.val = value
+
+
+def deleteNode(root, value):
     head = pre = Node(-1)
     if not root.next:
         return None
@@ -288,6 +294,7 @@ def deleteNode(root,value):
 # print(cc)
 # nums = [3,2,1]
 # nums = [2,5,1,5,4,5]
+
 # nums = [243, 277, 172, 222, 127, 70, 34, 1, 261, 277, 10, 151, 29, 159, 318, 16, 50, 41, 309, 315, 303, 47, 5, 257, 246,
 #         32, 105, 96, 199, 304, 194, 7, 218, 158, 239, 244, 58, 9, 250, 326, 210, 194, 312, 281, 244, 79, 170, 316, 64,
 #         291, 139, 178, 35, 299, 322, 21, 238, 54, 102, 105, 75, 17, 187, 55, 290, 115, 165, 51, 155, 107, 136, 112, 270,

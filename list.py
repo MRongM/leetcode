@@ -171,7 +171,7 @@ def insert(r, value, k):
 def getIntersectionNode(headA, headB):
     PA = headA
     PB = headB
-    while PA!=PB:
+    while PA != PB:
         if PA:
             PA = PA.next
         else:
@@ -183,33 +183,46 @@ def getIntersectionNode(headA, headB):
             PB = headA
     return PA
 
-    # la = []
-    # lb = []
-    # if not headA or not headB:
-    #     return
-    #
-    # while headA:
-    #     la.append(headA)
-    #     headA = headA.next
-    #
-    # while headB:
-    #     lb.append(headB)
-    #     headB = headB.next
-    #
-    # for i in range(1, min(len(la), len(lb)) + 1):
-    #     if la[-i] != lb[-i]:
-    #         return la[-i]
+
+def maxWidthOfVerticalArea(points):
+    """
+    https://leetcode-cn.com/problems/widest-vertical-area-between-two-points-containing-no-points
+    :param points:
+    :return:
+    """
+    res = []
+    for i, _ in points:
+        res.append(i)
+
+    res = sorted(res)
+    n = len(res)
+    if n <= 1:
+        return 0
+    pre = 0
+    cur = 1
+    ans = []
+    while cur < n:
+        pre_value = res[pre]
+        cur_value = res[cur]
+        ans.append(cur_value - pre_value)
+        pre += 1
+        cur += 1
+    return max(ans)
 
 
-a = [3, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2]
-print(find_half(a))
-
-a = [1, 2, 2, 2, 2, 1, 2, 3, 4, 5, 2, 1, 1, 1]
-
-# cnt, cand = majorityElement2(a)
-# res = majorityElement3(a)
-# res = majorityElement4(a)
-res = replaceSpace("my name  is xiaoming haha ")
-# happyNum(7)
+points = [[8, 7], [9, 9], [7, 4], [9, 7]]
+r = maxWidthOfVerticalArea(points)
+print(r)
 #
-print(res)
+# a = [3, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2]
+# print(find_half(a))
+#
+# a = [1, 2, 2, 2, 2, 1, 2, 3, 4, 5, 2, 1, 1, 1]
+#
+# # cnt, cand = majorityElement2(a)
+# # res = majorityElement3(a)
+# # res = majorityElement4(a)
+# res = replaceSpace("my name  is xiaoming haha ")
+# # happyNum(7)
+# #
+# print(res)
