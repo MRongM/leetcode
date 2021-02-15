@@ -24,3 +24,29 @@ def str_combination(s):
 
 r = str_combination('ab')
 print(r)
+
+
+class Solution:
+    """
+    https://leetcode-cn.com/problems/deepest-leaves-sum/
+    """
+    def __init__(self):
+        self.maxdep = -1
+        self.ans = 0
+
+    def deepestLeavesSum(self, root) -> int:
+        def dfs(root, layer):
+            if not root:
+                return None
+
+            if layer == self.maxdep:
+                self.ans += root.val
+
+            elif layer >= self.maxdep:
+                self.maxdep = layer
+                self.ans = root.val
+            dfs(root.right, layer + 1)
+            dfs(root.left, layer + 1)
+
+        dfs(root, 0)
+        return self.ans
