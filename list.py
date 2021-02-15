@@ -210,9 +210,23 @@ def maxWidthOfVerticalArea(points):
     return max(ans)
 
 
-points = [[8, 7], [9, 9], [7, 4], [9, 7]]
-r = maxWidthOfVerticalArea(points)
-print(r)
+# points = [[8, 7], [9, 9], [7, 4], [9, 7]]
+# r = maxWidthOfVerticalArea(points)
+# print(r)
+
+
+def minOperations(n: int) -> int:
+    """
+    https://leetcode-cn.com/problems/minimum-operations-to-make-array-equal/
+    :param n:
+    :return:
+    """
+    if n % 2 == 0:
+        mid = (2 * (n // 2 - 1) + 1 + 2 * (n // 2) + 1) // 2 - 1
+    else:
+        mid = 2 * (n // 2)
+
+    return sum(range(mid, 0, -2))
 #
 # a = [3, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2]
 # print(find_half(a))
