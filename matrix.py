@@ -238,19 +238,96 @@ def setZeroes(matrix):
             matrix[i][y] = 0
 
 
-def generateTriangle(num):
+def generateTriangle(numRows):
     """
     杨辉三角
-    :param num:
+    https://leetcode-cn.com/problems/pascals-triangle/
+    :param numRows:
     :return:
+
+    class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> pre = new ArrayList<>();
+
+        for(int i=0;i<numRows;i++){
+            List<Integer> cur = new ArrayList<>();
+            if(i==0){
+                pre.add(1);
+                cur = pre;
+            }else{
+                cur.add(1);
+                for(int j=0;j<pre.size()-1;j++){
+                    cur.add(pre.get(j)+pre.get(j+ 1));
+                }
+                cur.add(1);
+                pre = cur;
+            }
+            ans.add(cur);
+        }
+
+        return ans;
+        }
+    }
+
     """
+    ans = []
+    for i in range(numRows):
+        if i == 0:
+            cur = pre = [1]
+        else:
+            cur = [1]
+            for j in range(len(pre)-1):
+                cur.append(pre[j]+pre[j+1])
+            cur.append(1)
+            pre = cur
+        ans.append(cur)
+
+    return ans
 
 
-def queen8():
+class Solution:
     """
-    八皇后问题
-    :return:
+    https://leetcode-cn.com/problems/eight-queens-lcci/solution/ba-huang-hou-by-leetcode-solution/
     """
+    def solveNQueens(self, n: int):
+        def generateBoard():
+            board = list()
+            for i in range(n):
+                row[queens[i]] = "Q"
+                board.append("".join(row))
+                row[queens[i]] = "."
+            return board
+
+        def backtrack(row: int):
+            if row == n:
+                board = generateBoard()
+                solutions.append(board)
+            else:
+                for i in range(n):
+                    if i in columns or row - i in diagonal1 or row + i in diagonal2:
+                        continue
+                    queens[row] = i
+                    columns.add(i)
+                    diagonal1.add(row - i)
+                    diagonal2.add(row + i)
+                    backtrack(row + 1)
+                    columns.remove(i)
+                    diagonal1.remove(row - i)
+                    diagonal2.remove(row + i)
+
+        solutions = list()
+        queens = [-1] * n
+        columns = set()
+        diagonal1 = set()
+        diagonal2 = set()
+        row = ["."] * n
+        backtrack(0)
+        return solutions
+
+# cc = Solution().solveNQueens(8)
+# import pprint
+# pprint.pprint(cc)
 
 
 def print_matrix(matrix):
@@ -271,12 +348,12 @@ def mostPointsLine(points):
 
 import pprint
 
-m = [[1, 2], [3, 4]]
+# m = [[1, 2], [3, 4]]
 # pprint.pprint(m)
 # rotate(m)
 # res = spiralOrder(m)
 # res = generateMatrix(6)
 # res = generateMatrix2(6)
 # res = count_paths(6,5)
-res = waysToStep(4)
-pprint.pprint(res)
+# res = waysToStep(4)
+# pprint.pprint(res)
