@@ -89,11 +89,11 @@ def isUgly(num):
     return False
 
 
-for i in range(2, 20):
-    print(i, ' ', isUgly(i))
-
-c = -2147483648
-print(c, ' ', isUgly(c))
+# for i in range(2, 20):
+#     print(i, ' ', isUgly(i))
+#
+# c = -2147483648
+# print(c, ' ', isUgly(c))
 # r1 = []
 # r2 = []
 # for i in range(10):
@@ -110,3 +110,29 @@ print(c, ' ', isUgly(c))
 # r = cuttingRope(8)
 # print(r)
 # print_n(2)
+
+def romanToInt(s):
+    o={
+        'I': 1,
+        'V': 5,
+        'X': 10,
+        'L': 50,
+        'C': 100,
+        'D': 500,
+        'M': 1000,
+    }
+    if len(s) == 1:
+        return o.get(s)
+
+    ans = 0
+    pre = o.get(s[0])
+    for i in s[1:]:
+        cur = o.get(i)
+        if cur>pre:
+            ans+=cur-pre-pre
+        else:
+            ans+=cur
+        pre = cur
+
+    return ans
+

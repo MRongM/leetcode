@@ -1,8 +1,34 @@
-def buildTree(preOrder, inOrder):
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+
+def buildTree(preorder, inorder):
     """
+    https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/
     输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序
     遍历的结果中都不含重复的数字。
     """
+    if not preorder:
+        return None
+
+    tree = TreeNode(preorder[0])
+    loc = inorder.index(preorder[0])
+    tree.left = buildTree(preorder[1:loc + 1], inorder[:loc])
+    tree.right = buildTree(preorder[loc + 1:], inorder[loc + 1:])
+
+    return tree
+
+
+def treeHeight(root):
+    if not root:
+        return 0
+
+    left = treeHeight(root.left)
+    right = treeHeight(root.right)
+    return max(left, right) + 1
 
 
 def mergeTree(roota, rootb):
@@ -59,7 +85,7 @@ def post_traversal_check(root, nums):
     """
 
 
-def traversal_path(root,value):
+def traversal_path(root, value):
     """
     https://leetcode-cn.com/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/
     输入一棵二叉树和一个整数，打印出二叉树中节点值的和为输入整数的所有路径。从树的根
@@ -68,5 +94,3 @@ def traversal_path(root,value):
     :param value:
     :return:
     """
-
-
