@@ -9,7 +9,7 @@
 """
 
 
-def removeK(ss, k):
+def removek(ss, k):
     if len(ss) == k:
         return '0'
 
@@ -31,17 +31,35 @@ def removeK(ss, k):
     else:
         ans = ''.join(stack[:len(stack) - k])
 
-    for i in range(len(ans)):
-        if ans[i] != '0':
-            ans = ans[i:]
+    return str(int(ans))
+
+
+def removek2(ss, k):
+    if len(ss) == k:
+        return '0'
+
+    ans = ''
+    for idx, i in enumerate(ss):
+        if not ans:
+            ans += i
+        else:
+            if ans[-1] > i:
+                ans = ans[:-1] + i
+                k -= 1
+            else:
+                ans += i
+        if k == 0:
+            ans += ss[idx + 1:]
             break
+    if k:
+        ans = ans[:len(ans) - k]
 
-    return ans
+    return str(int(ans))
 
 
-ss = '1432219'
-k = 3
+ss = '100000'
+k = 4
 
-# ss = '10200'
-# k = 1
-print(removeK(ss, k))
+# ss = '1432219'
+# k = 3
+print(removek2(ss, k))
